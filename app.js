@@ -1,27 +1,30 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 var htmlController = require('./controllers/htmlController');
-var mysql = require('mysql');
+var apiController = require("./controllers/apiController");
 var app = express();
 var port = process.env.PORT || 3000;
 
-var jsonParser = bodyParser.json();
 
+// alias http://.../assets to /public
 app.use('/assets',express.static(__dirname + '/public'));
-app.set('view engine','ejs');
-
+// configure app to use bodyParser()
+// this lets us get the data from a POST
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// static html routes are handled here:
 htmlController(app);
+// api routes are handled here
+apiController(app);
 
-app.post('/personjson', jsonParser, function(req,res){
-    res.send('Received');
-    console.log(req.body.firstname);
-    console.log(req.body.lastname);
-});
 
-app.get('/api',function(req,res){
-    res.json({firstname:"John"});
+app.use(function(req, res, next){
+    res.status(404);
+    res.json({ error: 'Invalid URL' });
 });
 
 app.listen(port);
+console.log('Server started on port ' + port);
 
 

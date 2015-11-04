@@ -1,5 +1,6 @@
 /**
  * Created by nicobrooks on 11/3/15.
+ * Routes for /api/orders are defined here
  */
 
 module.exports = function(router){
@@ -14,7 +15,7 @@ module.exports = function(router){
 // ----------------------------------------------------
     router.route('/orders')
 
-        // create a bear (accessed at POST http://localhost:8080/api/bears)
+        // create a order (accessed at POST http://localhost:8080/api/orders)
         .post(function(req, res) {
 
             var order = new Order();      // create a new instance of the Order model
@@ -42,7 +43,7 @@ module.exports = function(router){
 // ----------------------------------------------------
     router.route('/orders/:order_id')
 
-        // get the order with that id (accessed at GET http://localhost:8080/api/bears/:order_id)
+        // get the order with that id (accessed at GET http://localhost:8080/api/orders/:order_id)
         .get(function(req, res) {
             Order.find({order_id : req.params.order_id}, function(err, order) {
                 if (err)
@@ -50,11 +51,13 @@ module.exports = function(router){
                 res.json(order);
             });
         })
-        // update the bear with this id (accessed at PUT http://localhost:8080/api/bears/:bear_id)
+        // update the order with this id (accessed at PUT http://localhost:8080/api/orders/:order_id)
         .put(function(req, res) {
 
             // use our order model to find the order we want
-            Order.findOneAndUpdate({order_id : req.params.order_id}, {owner : req.body.owner}, function(err, order) {
+            Order.findOneAndUpdate({'order_id' : req.params.order_id},
+                {'order_id' : req.params.order_id, 'owner' : req.body.owner},
+                {upsert : true}, function(err, order) {
                 console.log(req.params.order_id);
                 if (err)
                     res.send(err);
@@ -80,3 +83,18 @@ module.exports = function(router){
             });
         });
 }
+
+/*
+ var OrderSchema = mongoose.Schema({
+ order_id : Number,
+ owner    : String,
+ advertiser : String,
+ order      : String,
+ service    : String,
+ startDate  : Date,
+ endDate    : Date,
+ mediaBudget : Number,
+ toFee       : Number,
+ billedToClient : Number
+ });
+ */
