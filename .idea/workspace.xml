@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6f7581ac-6167-4e2a-a575-f53951c34320" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/db.js" afterPath="$PROJECT_DIR$/config/db.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/orderRoutes.js" afterPath="$PROJECT_DIR$/routes/orderRoutes.js" />
     </list>
     <ignored path="toAPI.iws" />
     <ignored path=".idea/workspace.xml" />
