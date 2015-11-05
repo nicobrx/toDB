@@ -20,6 +20,15 @@ module.exports = function(router){
 
             var order = new Order();      // create a new instance of the Order model
             order.order_id = req.body.order_id;  // set the order ID (comes from the request)
+            order.owner = req.body.owner;
+            order.advertiser = req.body.advertiser;
+            order.order = req.body.order;
+            order.service = req.body.service;
+            order.startDate = req.body.startDate;
+            order.endDate = req.body.endDate;
+            order.mediaBudget = req.body.mediaBudget;
+            order.toFee = req.body.toFee;
+            order.billedToClient = req.body.billedToClient;
 
             // save the order and check for errors
             order.save(function(err) {
@@ -62,14 +71,7 @@ module.exports = function(router){
                 if (err)
                     res.send(err);
 
-                // save the order
-                order.save(function(err) {
-                    if (err)
-                        res.send(err);
-
                     res.json({ message: 'order updated!' });
-                });
-
             });
         })
         .delete(function(req, res) {
