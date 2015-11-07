@@ -4,8 +4,18 @@
 module.exports = function(app) {
     var express = require('express');
     var orderRoutes = require('../routes/orderRoutes');
+    var gs_gaRecordRoutes = require('../routes/gs_gaRecordRoutes');
+    var db = require('../config/db');
+    var mongoose = require('mongoose');
     var router = express.Router();
 
+
+    //connect to mongoose/DB
+    mongoose.connect(db.url, function(err){
+        if (err) console.log('db connection failed');
+        else { var toDB = mongoose.connection;
+            console.log('connected to db')}
+    });
 
     // ROUTES FOR OUR API
     // =============================================================================
@@ -25,6 +35,7 @@ module.exports = function(app) {
 
     //hand off to get routes for /orders
     orderRoutes(router);
+    gs_gaRecordRoutes(router);
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
