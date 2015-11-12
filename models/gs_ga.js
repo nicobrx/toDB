@@ -2,9 +2,8 @@
  * Created by nicobrooks on 11/3/15.
  */
 var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
 
-var OrderSchema = mongoose.Schema({
+var Gs_gaSchema = mongoose.Schema({
     gaProfile: String,
     source: String,
     medium: String,
@@ -35,6 +34,6 @@ var OrderSchema = mongoose.Schema({
     goal20: Number,
     startDate  : Date,
     endDate    : Date
-});
+}).index({ gaProfile: 1, startDate: 1, endDate: 1 }, { unique: true });
 
-module.exports = mongoose.model('Gs_gaRecord', OrderSchema);
+module.exports = mongoose.model('Gs_gaRecord', Gs_gaSchema);

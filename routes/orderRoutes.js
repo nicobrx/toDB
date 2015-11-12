@@ -81,18 +81,3 @@ module.exports = function(router){
             });
         });
 }
-
-/*
- var OrderSchema = mongoose.Schema({
- order_id : Number,
- owner    : String,
- advertiser : String,
- order      : String,
- service    : String,
- startDate  : Date,
- endDate    : Date,
- mediaBudget : Number,
- toFee       : Number,
- billedToClient : Number
- });
- */
