@@ -7,6 +7,7 @@ module.exports = function(app) {
     var gs_gaRecordRoutes = require('../routes/gs_gaRecordRoutes');
     var gs_awRecordRoutes = require('../routes/gs_awRecordRoutes');
     var gs_mappingRoutes = require('../routes/gs_mappingRoutes');
+    var gs_qsRecordRoutes = require('../routes/gs_qsRecordRoutes');
     var db = require('../config/db');
     var mongoose = require('mongoose');
     var router = express.Router();     // get an instance of the express Router
@@ -36,9 +37,15 @@ module.exports = function(app) {
     gs_gaRecordRoutes(router);
     gs_awRecordRoutes(router);
     gs_mappingRoutes(router);
+    gs_qsRecordRoutes(router);
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
     app.use('/api', router);
 
 }
+
+
+/* to add a route add a model to models, add a route to routes, require the route and pass
+router to the route above
+ */
