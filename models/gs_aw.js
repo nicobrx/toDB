@@ -3,7 +3,6 @@
  */
 var mongoose     = require('mongoose');
 
-//'account','campaignName','clicks','impressions','ctr','avgPosition','cost'
 var Gs_awSchema = mongoose.Schema({
     account: String,
     campaignName: String,
@@ -12,6 +11,7 @@ var Gs_awSchema = mongoose.Schema({
     ctr: Number,
     avgPosition: Number,
     cost: Number,
+    qs: Number,
     startDate  : Date,
     endDate    : Date
 }).index({ account: 1, campaignName: 1, startDate: 1, endDate: 1 }, { unique: true });;
