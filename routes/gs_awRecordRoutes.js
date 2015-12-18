@@ -10,8 +10,8 @@ module.exports = function(router){
             var body = req.body;
             for (var i = 0,x = body.length;i<x;i++){
                 var query = {account : body[i].account,campaignName : body[i].campaignName,
-                    startDate : body[i].startDate, endDate : body[i].endDate};
-                bulk.find(query).updateOne(body[i]);
+                    startDate : new Date(body[i].startDate), endDate : new Date(body[i].endDate)};
+                bulk.find(query).upsert().updateOne(body[i]);
             }
             bulk.execute(function(err) {
                 if (err) {res.send(err); return}
