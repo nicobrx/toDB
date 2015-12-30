@@ -3,7 +3,6 @@
  */
 module.exports = function(app) {
     var express = require('express');
-    var orderRoutes = require('../routes/orderRoutes');
     var gs_gaRecordRoutes = require('../routes/gs_gaRecordRoutes');
     var gs_awRecordRoutes = require('../routes/gs_awRecordRoutes');
     var gs_mappingRoutes = require('../routes/gs_mappingRoutes');
@@ -31,7 +30,6 @@ module.exports = function(app) {
     });
 
     //hand off to get routes for /orders
-    orderRoutes(router);
     gs_gaRecordRoutes(router);
     gs_awRecordRoutes(router);
     gs_mappingRoutes(router);
