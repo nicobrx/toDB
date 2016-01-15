@@ -9,7 +9,8 @@
     "express": "~4.0.0",
     "mongoose": "~4.2.4",
     "body-parser": "~1.0.1",
-    "jade": "~1.0.0"
+    "jade": "~1.0.0",
+    "node-rest-client": "~1.5.1"
   },
   "description": "Interfaces to Two Octobers databases",
   "repository": {

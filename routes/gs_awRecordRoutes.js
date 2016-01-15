@@ -1,5 +1,5 @@
 module.exports = function(router){
-    var Gs_aw     = require('../models/gs_aw');
+    var Gs_aw     = require('../models/gs_calls');
 
 // ----------------------------------------------------
     router.route('/gs/aw')
@@ -8,7 +8,9 @@ module.exports = function(router){
             var body = req.body;
             for (var i = 0,x = body.length;i<x;i++){
                 var query = {account : body[i].account,campaignName : body[i].campaignName,
-                    startDate : body[i].startDate , endDate : body[i].endDate};
+                    startDate : new Date(body[i].startDate) , endDate : new Date(body[i].endDate)};
+                body[i].startDate = new Date(body[i].startDate);
+                body[i].endDate = new Date(body[i].endDate);
                 bulk.find(query).upsert().updateOne({$set: body[i]});
             }
             bulk.execute(function(err) {
@@ -16,15 +18,6 @@ module.exports = function(router){
                 res.json({ message: 'records updated' });
             });
         })
-        /*
-        .post(function(req, res) {
-            Gs_aw.create(req.body, function(err) {
-                if (err) {res.send(err); return}
-                res.json({ message: 'records inserted' });
-            });
-
-        })
-        */
         .get(function(req, res) {
             Gs_aw.find(function(err, gs_awRecords) {
                 if (err) {res.send(err); return}

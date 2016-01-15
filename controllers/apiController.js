@@ -6,13 +6,14 @@ module.exports = function(app) {
     var gs_gaRecordRoutes = require('../routes/gs_gaRecordRoutes');
     var gs_awRecordRoutes = require('../routes/gs_awRecordRoutes');
     var gs_mappingRoutes = require('../routes/gs_mappingRoutes');
-    var db = require('../config/db');
+    var gs_callRecordRoutes = require('../routes/gs_callRecordRoutes');
+    var env = require('../config/env');
     var mongoose = require('mongoose');
     var router = express.Router();     // get an instance of the express Router
 
 
     //connect to mongoose/DB
-    mongoose.connect(db.url, function(err){
+    mongoose.connect(env.dbURL, function(err){
         if (err) console.log('db connection failed');
         else {console.log('connected to db')}
     });
@@ -29,10 +30,11 @@ module.exports = function(app) {
         res.json({message: 'hooray! welcome to our api!'});
     });
 
-    //hand off to get routes for /orders
+    //hand off to get routes
     gs_gaRecordRoutes(router);
     gs_awRecordRoutes(router);
     gs_mappingRoutes(router);
+    gs_callRecordRoutes(router);
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api

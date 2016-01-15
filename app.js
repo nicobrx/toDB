@@ -1,6 +1,5 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
 var htmlController = require('./controllers/htmlController');
 var apiController = require("./controllers/apiController");
 var app = express();
