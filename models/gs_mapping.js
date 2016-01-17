@@ -6,6 +6,7 @@ var mongoose     = require('mongoose');
 var Gs_mappingSchema = mongoose.Schema({
     property: String,
     active: Boolean,
+    awAccount: String,
     semCampaigns: Array,
     rmCampaigns: Array,
     gaProfile: String,

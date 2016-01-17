@@ -1,7 +1,7 @@
 /**
  * Created by nicobrooks on 10/24/15.
  */
-exports.getCallRailData = function() {
+exports.getCallRailData = function(startDate,endDate) {
     var Client = require('node-rest-client').Client;
     var Gs_mapping = require('../models/gs_mapping');
     var env = require('../config/env');
@@ -26,7 +26,7 @@ exports.getCallRailData = function() {
     var parseCompanyIDs = function (companyIDs) {
         for (var i = 0, x = companyIDs.length; i < x; i++) {
             var ID = companyIDs[i].callrailCompanyId;
-            callRailAPI(ID,"2015-12-01","2015-12-31");
+            callRailAPI(ID,startDate,endDate);
         }
     }
 

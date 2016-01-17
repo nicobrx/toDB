@@ -6,17 +6,11 @@ module.exports = function(router){
 // ----------------------------------------------------
     router.route('/gs/mappings')
         .post(function(req, res) {
-            /*
-            Gs_mapping.create(req.body, function(err) {
-                if (err) {res.send(err); return}
-                res.json({ message: 'records inserted' });
-            });
-            */
             var bulk = Gs_mapping.collection.initializeOrderedBulkOp();
             var body = req.body;
             for (var i = 0,x = body.length;i<x;i++){
                 var query = {property : body[i].property};
-                bulk.find(query).upsert().updateOne(body[i]);
+                bulk.find(query).upsert().updateOne({$set: body[i]});
             }
             bulk.execute(function(err) {
                 if (err) {res.send(err); return}

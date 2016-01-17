@@ -11,8 +11,14 @@ module.exports = function(app){
         res.send(html);
     });
     app.get('/callrail',function(req,res){
+        var html = jade.renderFile('./views/callrail.jade');
+        res.send(html);
+    });
+    app.post('/callrail',function(req,res){
         var fn = jade.compileFile('./views/callrail.jade');
-        var html = fn(callrail.getCallRailData());
+        var startDate = req.body.startDate;
+        var endDate = req.body.endDate;
+        var html = fn(callrail.getCallRailData(startDate,endDate));
         res.send(html);
     });
 

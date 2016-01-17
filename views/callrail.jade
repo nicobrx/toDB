@@ -7,6 +7,11 @@ html(lang="en")
 
     body
         h1 callrail
-
-                p stuff for dealing with callrail data
-            p.
+form(method="POST", action="/callrail")
+    input(type="hidden", name="_method", value="PUT")
+    p Start Date:
+        input(type="date", name="startDate")
+    p End Date:
+        input(type="date", name="endDate")
+    p
+        input(type="submit", value="fetch Callrail data")
