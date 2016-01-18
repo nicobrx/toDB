@@ -18,7 +18,8 @@ module.exports = function(app){
         var fn = jade.compileFile('./views/callrail.jade');
         var startDate = req.body.startDate;
         var endDate = req.body.endDate;
-        var html = fn(callrail.getCallRailData(startDate,endDate));
+        var html = fn();
+        callrail.getCallRailData(startDate,endDate);
         res.send(html);
     });
 
