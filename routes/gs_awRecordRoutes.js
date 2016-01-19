@@ -1,5 +1,5 @@
 module.exports = function(router){
-    var Gs_aw     = require('../models/gs_calls');
+    var Gs_aw     = require('../models/gs_aw');
 
 // ----------------------------------------------------
     router.route('/gs/aw')
